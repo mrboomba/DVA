@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <script>
+    /*function validateForm() {
+        var x = document.forms["myForm"]["code"].value;
+        if (x == "") {
+            alert("Code must be filled out");
+            return false;
+        }
+       
+    } */
+  </script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+  <div class="head_menubar">
+    <img class="img_icon" src="img/logo.png">
+    <div class="menu_right">
+      <a href="/">
+        <div class="menu_home">HOME</div>
+      </a>
+      <div class="menu_map">MAP |</div>
+    </div>
+  </div>
+
+  <div class="border">
+    <center>
+      <p>code</p>
+    </center>
+    <br>
+    <center>
+      <input ng-model="code" type="text" name="code" placeholder="code" class="input_text">
+      <center>
+        <button class ="ok_button" ng-click="sendCode(code)" value="OK">OK</button>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</body>
+<script>
+  var app = angular.module('myApp', []);
+  app.config(function ($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+  });
+  app.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('[[');
+    $interpolateProvider.endSymbol(']]');
+  });
+
+  app.controller('myCtrl', function ($scope, $http, $location, $window) {
+
+    $scope.sendCode = function (code) {
+      if (typeof code == 'undefined') {
+          alert("Code must be filled out");
+      } else {
+        var data = {
+          "code": code,
+        }
+        $http({
+            method: 'POST',
+            url: "api/output",
+            data: JSON.stringify(data)
+          })
+          .then(function (response) {
+            //First function handles success 
+            console.log(response.data)
+            if (response.data.message == "success") {
+              $window.location.href = "/output";
+            }
+            
+          }, function (response) {
+            //Second function handles error 
+            if (response.data.message == "code not found") {
+              alert("code not found");
+            }
+          });
+      }
+    }
+  });
+</script>
+
+</html>

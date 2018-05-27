@@ -1,0 +1,38 @@
+{
+  "name": "dva",
+  "version": "1.0.0",
+  "description": "Web for Dashcam viewer analytics",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "deep",
+    "learning",
+    "dashcam"
+  ],
+  "author": "mrboomba , star",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrboomba/server_for_DVA.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mrboomba/server_for_DVA/issues"
+  },
+  "homepage": "https://github.com/mrboomba/server_for_DVA#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "crypto": "^1.0.1",
+    "csvtojson": "^1.1.12",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.1.1",
+    "nodemailer": "^4.6.5",
+    "path": "^0.12.7",
+    "python-shell": "^0.5.0",
+    "request": "^2.86.0",
+    "sync-request": "^6.0.0"
+  }
+}
